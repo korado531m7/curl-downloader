@@ -8,8 +8,12 @@ read -p "enter the path for saving data: " PATH_SAVE
 
 
 if [ -n "$URL_TARGET" ]; then
-    cd "${PATH_SAVE}/"
-    curl -A $USER_AGENT -e $URL_REFERER -O $URL_TARGET
+    if [ -n "$PATH_SAVE" ]; then
+        cd "${PATH_SAVE}/"
+        curl -A "$USER_AGENT" -e "$URL_REFERER" -O $URL_TARGET
+    else
+        echo "No Path"
+    fi
 else
     echo "No URL"
 fi
